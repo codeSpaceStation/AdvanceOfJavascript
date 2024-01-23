@@ -1,44 +1,53 @@
+// function Mahasiswa(nama, point){
 
-// const methodMahasiswa = {
-//     belajar : function(jam){
-//         this.point += jam;
-//         console.log(`Hello ${this.nama}, Selamat Belajar!`);
-//     },
+//     // let this = Object.create(Mahasiswa.prototype);
+ 
+//     this.nama = nama;
+//     this.point = point;
 
-//     main : function(jam){
-//         this.point -= jam;
-//         console.log(`Hello ${this.nama}, Gass Nongki dan main!!`);
-//     },
-//     coding: function(jam){
-//         this.point += jam * 2;
-//         console.log(`Hello ${this.nama}, Selamat Otak anda akan burnout!`)
-//     }
+//     //  return  this;
+
 // }
 
-function Mahasiswa(nama, point){
-    // let mahasiswa = Object.create(methodMahasiswa);
+//  Mahasiswa.prototype.belajar = function (jam){
+//     this.point += jam;
+//     return `Hello ${this.nama}, Selamat belajar!`;
+//  }
 
-    this.nama = nama;
-    this.point = point;
+//  Mahasiswa.prototype.main = function(jam){
+//     this.point -= jam;
+//     return `Hello ${this.nama}, Gass yok nongki dan main!!`;
+//  }
 
-    // return mahasiswa;
-}
+//  Mahasiswa.prototype.coding = function(jam){
+//     this.point += jam * 2;
+//     return `Hello ${this.nama}, Selamat Otak kamu akan burnout`;
+//  }
+
+// let andi = new Mahasiswa('andi', 12);
 
 
-Mahasiswa.prototype.belajar = function(jam){
-    this.point += jam;
-    console.log(`Hello ${this.nama}, Selamat Belajar!`);
-}
-
-Mahasiswa.prototype.main = function(jam){
-    this.point -= jam;
-    console.log(`Hello ${this.nama}, Gass Nongki dan main!!`);
+// versi  class
+class Mahasiswa{
+    constructor(nama, point){
+        this.nama = nama;
+        this.point = point;
     
-}
+    }
 
-Mahasiswa.prototype.coding = function(jam){
+    belajar(jam){
+        this.point += jam;
+        return `Hello ${this.nama}, Selamat belajar!`;
+    }
+    main (jam){
+    this.point -= jam;
+    return `Hello ${this.nama}, Gass yok nongki dan main!!`;
+    }
+    coding(jam){
     this.point += jam * 2;
-    console.log(`Hello ${this.nama}, Selamat Otak anda akan burnout!`)
+    return `Hello ${this.nama}, Selamat Otak kamu akan burnout`;
+    } 
 }
 
 let andi = new Mahasiswa('andi', 12);
+let indah = new Mahasiswa('indah', 15);
