@@ -1,0 +1,23 @@
+[
+	{
+		"nama": "Silvy sisi",
+		"nim": "192820",
+		"email": "silvysisi@gmail.com",
+		"prodi": "Teknik informatika",
+		"idDosenWali": 1
+	},
+	{
+		"nama": "Sela Rara",
+		"nim": "192821",
+		"email": "selarara@gmail.com",
+		"prodi": "Teknik informatika",
+		"idDosenWali": 2
+	},
+	{
+		"nama": "Sahrini susi",
+		"nim": "192822",
+		"email": "sahrini@gmail.com",
+		"prodi": "Teknik informatika",
+		"idDosenWali": 3
+	}
+]
