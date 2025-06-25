@@ -16,6 +16,8 @@ $(".searchBtn").on("click", function () {
 			if (!movies) {
 				$(".alertContainer").html(alertContain("Kamu belum mengisi kolom search atau keywordmu Salah"));
 				return;
+			} else {
+				$(".alertContainer").empty();
 			}
 
 			movies.forEach((m) => {
@@ -24,13 +26,17 @@ $(".searchBtn").on("click", function () {
 
 			$("div.card-container").html(movieCard);
 
+			// ketika tombol modal movie detail di klik
 			$(".btnDetail").on("click", function () {
 				$.ajax({
-					url: "http://www.omdbapi.com/?apikey=6cc5343f&i=" + $(this).attr("data"),
+					url: "http://www.omdbapi.com/?apikey=6cc5343f&i=" + $(this).data("imdbid"),
 					success: (mvDetails) => {
 						const movieDetail = detailMovies(mvDetails);
 
 						$(".modal-detail").html(movieDetail);
+					},
+					error: (e) => {
+						$(".alertContainer").html(alertContain(e.statusText));
 					},
 				});
 			});
@@ -45,11 +51,11 @@ function cardMovies(m) {
 	return `
   <div class="col-md-3 my-3">
     <div class="card">
-    <img src="${m.Poster}" class="card-img-top myImg" alt="..." />
+    <img src="${m.Poster}" class="card-img-top myImg" alt="..${m.Title}" />
       <div class="card-body">
         <h5 class="card-title text-truncate">${m.Title}</h5>
         <h6 class="card-subtitle mb-2 text-muted">${m.Year}</h6>
-        <a href="#" class="btn btn-primary btnDetail" data-bs-toggle="modal" data-bs-target="#modalMovie" data=${m.imdbID} >Show details</a>
+        <a href="#" class="btn btn-primary btnDetail" data-bs-toggle="modal" data-bs-target="#modalMovie" data-imdbid=${m.imdbID} >Show details</a>
       </div>
     </div>
   </div>
@@ -58,10 +64,10 @@ function cardMovies(m) {
 
 function detailMovies(mvDetails) {
 	return `
-  <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <img src="${mvDetails.Poster}" class="img-fluid" alt="..." />
+  <div class="container-fluid">
+      <div class="row ">
+        <div class="col-md-5 d-flex justify-content-center">
+          <img src="${mvDetails.Poster}" class="img-fluid" alt="${mvDetails.Title}" />
         </div>
         <div class="col-md">
           <ul class="list-group">
@@ -71,7 +77,7 @@ function detailMovies(mvDetails) {
             <li class="list-group-item"
               ><strong>Plot : </strong><br />${mvDetails.Plot}</li
             >
-            <li class="list-group-item"><strong>Rating: </strong>🌟${mvDetails.Ratings[0].Value}</li>
+            <li class="list-group-item"><strong>Rating: </strong>🌟${mvDetails.imdbRating}</li>
           </ul>
         </div>
       </div>
