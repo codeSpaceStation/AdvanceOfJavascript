@@ -1,3 +1,11 @@
+/**  FETCH
+ *
+ * Definisi:
+ * sebuah method pd API js untk mengambil [resources] dr jaringan, & mengembalikan
+ * [promise] yang selesai (fullfilled) ketika ada [response] yang tersedia.
+ *
+ * */
+
 const searchForm = document.querySelector("#searchForm");
 const inputSearch = document.querySelector(".inputSearch");
 const alertContainer = document.querySelector(".alertContainer");
@@ -16,12 +24,19 @@ searchForm.addEventListener("submit", function (e) {
 	cardContainer.innerHTML = movCard;
 
 	const keyword = inputSearch.value.trim();
+
 	if (keyword) {
 		alertContainer.innerHTML = ""; // reset alert
 		spinnerCard.classList.remove("d-none");
 
+		/// parameter fetch
+		/// fetch (resourch/alamat resourcesnya, init/ option/konfigurasi);
 		fetch("http://www.omdbapi.com/?apikey=6cc5343f&s=" + keyword)
+			/// Fetch adalah method/func di js yg mengembalikan promise
+			// dan promise harus dikasih method untuk menangani ketika data sudah fulfilled/
+			// data sudah dikembalikan -> kalo berhasil ngapain, kalo gagal ngapain.
 			.then((response) => response.json())
+			/// karena then pertama ini masih return promise, dan yang namanya promise, kalo pengen kita jalan kan secara asynchronous, maka response.json() dijalankan lagi ke method then
 			.then((response) => {
 				const movies = response.Search;
 
